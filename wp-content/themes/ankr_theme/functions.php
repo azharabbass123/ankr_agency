@@ -146,11 +146,15 @@ function ankr_theme_scripts()
 	//adding cusotm css files
 	wp_enqueue_style('bootstrap', get_template_directory_uri() . '/css/bootstrap.min.css', array(), '3.3.6', 'all');
 	wp_enqueue_style('ankr', get_template_directory_uri() . '/css/ankr.css', array(), '1.0.0', 'all');
+	wp_enqueue_style('swiper_style-css', get_template_directory_uri() . '/css/swiper.css', array(), '10.3.1', 'all');
 
 	wp_enqueue_style('ankr_theme-style', get_stylesheet_uri(), array(), _S_VERSION);
 	wp_style_add_data('ankr_theme-style', 'rtl', 'replace');
 
 	wp_enqueue_script('ankr_theme-navigation', get_template_directory_uri() . '/js/navigation.js', array(), _S_VERSION, true);
+	wp_enqueue_script('jquery', get_template_directory_uri() . 'js/my_jquery.js', array(), '3.7.1');
+	wp_enqueue_script('slick-js', get_template_directory_uri() . 'js/slick_carousel.js', array(), _S_VERSION, true);
+	wp_enqueue_script('swiper', get_template_directory_uri() . 'js/swiper.js');
 
 	if (is_singular() && comments_open() && get_option('thread_comments')) {
 		wp_enqueue_script('comment-reply');

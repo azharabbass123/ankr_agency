@@ -1,4 +1,5 @@
 <?php
+
 /**
  * The template for displaying all pages
  *
@@ -15,24 +16,41 @@
 get_header();
 ?>
 
-	<main id="primary" class="site-main">
+<main id="primary" class="site-main">
 
-		<?php
-		while ( have_posts() ) :
-			the_post();
+	<?php
+	// Custom query to fetch all published posts
+	$args = array(
+		'post_type' => 'post',          // Fetch posts
+		'posts_per_page' => 10,         // Number of posts to display
+		'post_status' => 'publish',     // Only fetch published posts
+	);
 
-			get_template_part( 'template-parts/content', 'page' );
+	$query = new WP_Query($args);
 
-			// If comments are open or we have at least one comment, load up the comment template.
-			if ( comments_open() || get_comments_number() ) :
-				comments_template();
-			endif;
+	// Check if there are posts
+	if ($query->have_posts()) :
+		// Loop through the posts
+		while ($query->have_posts()) : $query->the_post();
 
-		endwhile; // End of the loop.
-		?>
+			// Display the content for each post
+			get_template_part('template-parts/content', get_post_format());
 
-	</main><!-- #main -->
+		endwhile;
+
+		// Pagination if needed
+		the_posts_pagination();
+
+	else :
+		echo '<p>No posts found</p>';
+	endif;
+
+	// Restore original Post Data
+	wp_reset_postdata();
+	?>
+
+</main><!-- #main -->
 
 <?php
-get_sidebar();
+//get_sidebar();
 get_footer();

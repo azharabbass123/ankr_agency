@@ -33,8 +33,18 @@ get_header(); ?>
 			?>
 
 		</div><!-- .container -->
-
-
+		<?php
+		/*
+	
+		@package ankr-theme
+		
+		*/
+		get_template_part('template-parts/content-services');
+		get_template_part('template-parts/content-video-gallery');
+		get_template_part('template-parts/content-testimonials');
+		get_template_part('template-parts/content-our-team');
+		get_template_part('template-parts/content-contact-form');
+		?>
 	</main>
 </div><!-- #primary -->
 
